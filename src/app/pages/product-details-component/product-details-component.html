@@ -9,15 +9,15 @@
       <!-- Product Image -->
       <div class="relative z-10 w-full">
         <img
-          [src]="product.image"
+          [src]="productDetails()?.image"
           alt
-          [alt]="product.title"
+          [alt]="productDetails()?.title"
           class="w-full h-auto rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-500 ease-out"
-          [class.animate-pulse]="!product.image"
+          [class.animate-pulse]="!productDetails()?.image"
         />
 
         <!-- Image Loading Placeholder -->
-        @if (!product.image) {
+        @if (!productDetails()?.image) {
         <div
           class="w-full h-80 bg-white/20 rounded-2xl flex items-center justify-center"
         >
@@ -52,21 +52,21 @@
               d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z"
             ></path>
           </svg>
-          {{ product.category }}
+          {{ productDetails()?.category }}
         </span>
       </div>
 
       <!-- Product Name -->
       <div>
         <h1 class="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
-          {{ product.title }}
+          {{ productDetails()?.title }}
         </h1>
       </div>
 
       <!-- Price -->
       <div class="flex space-x-2 justify-between items-center">
         <span class="text-4xl lg:text-5xl font-bold text-orange-600">
-          {{ product.price | currency }}
+          {{ productDetails()?.price | currency }}
         </span>
       </div>
 
@@ -87,7 +87,7 @@
           Product Description:
         </h3>
         <p class="text-gray-700 text-lg leading-relaxed">
-          {{ product.description }}
+          {{ productDetails()?.description }}
         </p>
       </div>
 

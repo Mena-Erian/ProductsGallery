@@ -1,6 +1,7 @@
 @if (product() != undefined) {
 <!-- product-card.component.html -->
 <div
+  [routerLink]="['/main/product-details',product()?.id]"
   class="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 group overflow-hidden border border-gray-100 hover:border-orange-200"
 >
   <!-- Image Container -->

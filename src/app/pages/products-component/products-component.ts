@@ -36,7 +36,7 @@ interface AutoCompleteCompleteEvent {
   styleUrl: './products-component.scss',
 })
 export class ProductsComponent implements OnInit {
-  productService = inject(ProductService);
+  private readonly productService = inject(ProductService);
   products: WritableSignal<IProduct[]> = signal<IProduct[]>([]);
   // Search Variables
   searchItems: string[] = [];

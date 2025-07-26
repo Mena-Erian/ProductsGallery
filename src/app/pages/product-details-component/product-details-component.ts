@@ -1,5 +1,14 @@
 import { CurrencyPipe } from '@angular/common';
-import { Component } from '@angular/core';
+import {
+  Component,
+  inject,
+  OnInit,
+  signal,
+  WritableSignal,
+} from '@angular/core';
+import { ProductService } from '../../shared/services/product/product-service';
+import { ActivatedRoute } from '@angular/router';
+import { IProduct } from '../../core/interfaces/Iproducts';
 
 @Component({
   selector: 'app-product-details-component',
@@ -7,15 +16,37 @@ import { Component } from '@angular/core';
   templateUrl: './product-details-component.html',
   styleUrl: './product-details-component.scss',
 })
-export class ProductDetailsComponent {
-  product = {
-    id: 20,
-    title: 'DANVOUY Womens T Shirt Casual Cotton Short',
-    price: 12.99,
-    description:
-      '95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.',
-    category: "women's clothing",
-    image: 'https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg',
-    rating: { rate: 3.6, count: 145 },
-  };
+export class ProductDetailsComponent implements OnInit {
+  private readonly activatedRoute = inject(ActivatedRoute);
+  private readonly productService = inject(ProductService);
+  productDetails: WritableSignal<IProduct | null> = signal<IProduct | null>(
+    null
+  );
+  productId: string = '';
+
+  ngOnInit(): void {
+    this.getProductDetails();
+  }
+
+  getParamProductId(): string {
+    this.activatedRoute.paramMap.subscribe({
+      next: (paramId) => {
+        this.productId = paramId.get('productId') ?? '';
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    });
+    return this.productId;
+  }
+  getProductDetails(): void {
+    this.productService.getSingleProduct(this.getParamProductId()).subscribe({
+      next: (res) => {
+        this.productDetails.set(res);
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    });
+  }
 }

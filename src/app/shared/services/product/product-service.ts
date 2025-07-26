@@ -12,20 +12,20 @@ export class ProductService {
   getAllProducts(): Observable<any> {
     return this.httpClient.get(`${environment.baseUrl}/products`);
   }
-  getSingleProduct(productId: number): Observable<any> {
+  getSingleProduct(productId: string): Observable<any> {
     return this.httpClient.get(`${environment.baseUrl}/products/${productId}`);
   }
 
   addNewProduct(newProduct: any): Observable<any> {
     return this.httpClient.post(`${environment.baseUrl}/products`, newProduct);
   }
-  updateProduct(productId: number, product: any): Observable<any> {
+  updateProduct(productId: string, product: any): Observable<any> {
     return this.httpClient.put(
       `${environment.baseUrl}/products/${productId}`,
       product
     );
   }
-  deleteProduct(productId: number): Observable<any> {
+  deleteProduct(productId: string): Observable<any> {
     return this.httpClient.delete(
       `${environment.baseUrl}/products/${productId}`
     );
