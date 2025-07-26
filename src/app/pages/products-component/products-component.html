@@ -1,8 +1,17 @@
-<section>
+<section
+  class="bg-white dark:bg-gray-900 min-h-screen transition-colors duration-100 p-6"
+>
+  <!-- Header Section -->
   <div class="mb-8 flex">
     <div>
-      <h1 class="text-4xl font-bold text-gray-800 mb-2">Products</h1>
-      <p class="text-lg text-gray-600">
+      <h1
+        class="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-2 transition-colors duration-100"
+      >
+        Products
+      </h1>
+      <p
+        class="text-lg text-gray-600 dark:text-gray-400 transition-colors duration-100"
+      >
         Discover amazing products at great prices
       </p>
     </div>
@@ -16,12 +25,14 @@
         icon="pi pi-sort-alpha-down"
         dropdownIcon="pi pi-cog"
         [model]="sortBtnItems"
+        class="sort-button-dark-mode dark:text-black"
       >
       </p-splitbutton>
     </div>
   </div>
 
-  <div class="relative">
+  <!-- Search Section -->
+  <div class="relative mb-8">
     <p-autocomplete
       [(ngModel)]="searchInputValues"
       inputId="searchInput"
@@ -29,14 +40,43 @@
       fluid
       [suggestions]="searchItems"
       (completeMethod)="search($event)"
-      placeholder="Search"
+      placeholder="Search products..."
+      class="search-input-dark-mode"
     />
   </div>
 
+  <!-- Products Grid -->
   <div class="grid sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-10 mt-7">
     @for (prod of products() | searchProduct : searchInputValues ; track $index)
     {
-    <app-card-product-component [product]="prod"></app-card-product-component>
+    <app-card-product-component
+      pAnimateOnScroll
+      [product]="prod"
+      enterClass="animate-enter fade-in-10 animate-duration-300"
+      leaveClass="animate-leave fade-out-0"
+    ></app-card-product-component>
     }
   </div>
+
+  <!-- Empty State (if no products) -->
+  @if ((products() | searchProduct : searchInputValues).length === 0) {
+  <div class="flex flex-col items-center justify-center py-20">
+    <div class="text-gray-400 dark:text-gray-600 mb-6">
+      <svg class="w-24 h-24 mx-auto" fill="currentColor" viewBox="0 0 20 20">
+        <path
+          fill-rule="evenodd"
+          d="M10 2L3 7v11a1 1 0 001 1h12a1 1 0 001-1V7l-7-5zM10 4.414L5.414 8H14.586L10 4.414zM5 9v6h2v-4h6v4h2V9H5z"
+          clip-rule="evenodd"
+        ></path>
+      </svg>
+    </div>
+    <h3 class="text-xl font-semibold text-gray-600 dark:text-gray-400 mb-2">
+      No Products Found
+    </h3>
+    <p class="text-gray-500 dark:text-gray-500 text-center max-w-md">
+      Try adjusting your search terms or browse our categories to find what
+      you're looking for.
+    </p>
+  </div>
+  }
 </section>

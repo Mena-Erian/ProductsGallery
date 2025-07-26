@@ -1,10 +1,35 @@
-import { Component } from '@angular/core';
+import { NgClass } from '@angular/common';
+import {
+  AfterViewInit,
+  Component,
+  effect,
+  HostListener,
+  inject,
+} from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-
+import { ToggleSwitch } from 'primeng/toggleswitch';
+import { DarkModeService } from '../../shared/services/darkMode/dark-mode-service';
 @Component({
   selector: 'app-navbar-component',
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, FormsModule, ToggleSwitch, NgClass],
   templateUrl: './navbar-component.html',
   styleUrl: './navbar-component.scss',
 })
-export class NavbarComponent {}
+export class NavbarComponent implements AfterViewInit {
+  private readonly darkModeService = inject(DarkModeService);
+  isDark: boolean = false;
+  constructor() {
+    effect(() => {
+      this.isDark = this.darkModeService.isDark();
+    });
+  }
+  @HostListener('change') onChangeDarkModeSwitchss() {
+    this.darkModeService.toggleDarkMode();
+    console.log('it work');
+    this.darkModeService.isDark.set(this.isDark);
+  }
+  ngAfterViewInit(): void {
+    this.darkModeService.darkModeCheck();
+  }
+}

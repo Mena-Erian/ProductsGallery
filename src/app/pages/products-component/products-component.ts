@@ -15,6 +15,7 @@ import { SplitButton } from 'primeng/splitbutton';
 import { MenuItem, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { SearchProductPipe } from '../../shared/pipes/searchProduct/search-product-pipe';
+import { AnimateOnScrollModule } from 'primeng/animateonscroll';
 
 interface AutoCompleteCompleteEvent {
   originalEvent: Event;
@@ -31,6 +32,7 @@ interface AutoCompleteCompleteEvent {
     SplitButton,
     ToastModule,
     SearchProductPipe,
+    AnimateOnScrollModule,
   ],
   templateUrl: './products-component.html',
   styleUrl: './products-component.scss',

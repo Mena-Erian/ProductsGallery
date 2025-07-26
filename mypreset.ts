@@ -352,6 +352,17 @@ export const MyPreset = definePreset(Aura, {
               activeColor: '#ffffff',
             },
             // Add other button variants for dark mode as needed
+            secondary: {
+              background: '#ef4444', // red-500 - slightly lighter than original
+              hoverBackground: '#dc2626', // red-600
+              activeBackground: '#b91c1c', // red-700
+              borderColor: '#ef4444',
+              hoverBorderColor: '#dc2626',
+              activeBorderColor: '#b91c1c',
+              color: '#ffffff',
+              hoverColor: '#ffffff',
+              activeColor: '#ffffff',
+            },
           },
         },
       },
@@ -385,7 +396,17 @@ export const MyPreset = definePreset(Aura, {
         transitionDuration: '{transition.duration}',
       },
     },
-
+    autocomplete: {
+      colorScheme: {
+        dark: {
+          option: {
+            color: 'black',
+            focusColor: '#e53e3e',
+            selectedColor: '#737373',
+          },
+        },
+      },
+    },
     // Card customization
     card: {
       root: {

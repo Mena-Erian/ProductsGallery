@@ -2,6 +2,8 @@
 @import "tailwindcss";
 @plugin "tailwindcss-primeui";
 @import "primeicons/primeicons.css";
+@custom-variant dark (&:where(.dark, .dark *)); //dark mode configuration
+
 // @import "flowbite/src/themes/default";
 // @plugin "flowbite/plugin";
 // @source "../node_modules/flowbite";

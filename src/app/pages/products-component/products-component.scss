@@ -1,0 +1,121 @@
+:host {
+  @keyframes slidedown-icon {
+    0% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(20px);
+    }
+
+    100% {
+      transform: translateY(0);
+    }
+  }
+  .p-tieredmenu-item-content * {
+    @apply .dark:text-black!;
+    &:hover {
+      @apply .dark:text-black!;
+    }
+  }
+
+  .slidedown-icon {
+    animation: slidedown-icon;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+  }
+
+  .box {
+    background-image: radial-gradient(var(--primary-300), var(--primary-600));
+    border-radius: 50% !important;
+    color: var(--primary-color-text);
+  }
+}
+
+:host ::ng-deep {
+  /* Split Button Dark Mode */
+  .sort-button-dark-mode .p-splitbutton {
+    @apply transition-colors duration-300;
+  }
+
+  .sort-button-dark-mode .p-splitbutton .p-button {
+    background: var(--p-button-secondary-background) !important;
+    border-color: var(--p-button-secondary-border-color) !important;
+    color: var(--p-button-secondary-color) !important;
+  }
+
+  .sort-button-dark-mode .p-splitbutton .p-button:hover {
+    background: var(--p-button-secondary-hover-background) !important;
+    border-color: var(--p-button-secondary-hover-border-color) !important;
+    color: var(--p-button-secondary-hover-color) !important;
+  }
+
+  /* Autocomplete Dark Mode */
+  .search-input-dark-mode .p-autocomplete {
+    @apply transition-colors duration-300;
+  }
+
+  .search-input-dark-mode .p-autocomplete .p-inputtext {
+    @apply bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 border-gray-300 dark:border-gray-600;
+    @apply focus:border-orange-500 dark:focus:border-orange-400 focus:ring-orange-500/20 dark:focus:ring-orange-400/20;
+    @apply transition-colors duration-300;
+  }
+
+  .search-input-dark-mode .p-autocomplete .p-inputtext::placeholder {
+    @apply text-gray-500 dark:text-gray-400;
+  }
+
+  /* Autocomplete Panel Dark Mode */
+  .p-autocomplete-panel {
+    @apply bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700;
+    @apply shadow-lg dark:shadow-gray-900/50;
+  }
+
+  .p-autocomplete-panel .p-autocomplete-items .p-autocomplete-item {
+    @apply text-gray-900 dark:text-gray-100;
+    @apply hover:bg-orange-50 dark:hover:bg-gray-700;
+    @apply hover:text-orange-600 dark:hover:text-orange-400;
+  }
+
+  .p-autocomplete-panel .p-autocomplete-items .p-autocomplete-item.p-highlight {
+    @apply bg-orange-500 dark:bg-orange-600 text-white;
+  }
+
+  /* Toast Dark Mode */
+  .p-toast .p-toast-message {
+    @apply bg-white dark:bg-gray-800 border dark:border-gray-700;
+    @apply shadow-lg dark:shadow-gray-900/50;
+  }
+
+  .p-toast .p-toast-message .p-toast-message-content {
+    @apply text-gray-900 dark:text-gray-100;
+  }
+
+  .p-toast .p-toast-message.p-toast-message-success {
+    @apply border-green-400 dark:border-green-600;
+  }
+
+  .p-toast .p-toast-message.p-toast-message-info {
+    @apply border-blue-400 dark:border-blue-600;
+  }
+
+  .p-toast .p-toast-message.p-toast-message-warn {
+    @apply border-yellow-400 dark:border-yellow-600;
+  }
+
+  .p-toast .p-toast-message.p-toast-message-error {
+    @apply border-red-400 dark:border-red-600;
+  }
+
+  /* Split Button Dropdown Dark Mode */
+  .p-splitbutton .p-menu {
+    @apply bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700;
+    @apply shadow-lg dark:shadow-gray-900/50;
+  }
+
+  .p-splitbutton .p-menu .p-menuitem-link {
+    @apply text-gray-900 dark:text-gray-100;
+    @apply hover:bg-orange-50 dark:hover:bg-gray-700;
+    @apply hover:text-orange-600 dark:hover:text-orange-400;
+  }
+}
