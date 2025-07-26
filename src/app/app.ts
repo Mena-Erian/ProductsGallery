@@ -3,10 +3,11 @@ import { RouterOutlet } from '@angular/router';
 import { FlowbiteService } from './shared/services/flowbite/flowbite-service';
 import { initFlowbite } from 'flowbite';
 import { Toast } from 'primeng/toast';
+import { NgxSpinnerComponent } from 'ngx-spinner';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Toast],
+  imports: [RouterOutlet, Toast, NgxSpinnerComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })

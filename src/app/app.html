@@ -1,2 +1,105 @@
 <p-toast></p-toast>
 <router-outlet></router-outlet>
+
+<!-- Custom Loading Screen -->
+<!-- Method 1: Direct Content Inside NGX Spinner -->
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="large"
+  color="#ff6b35"
+  type="square-jelly-box"
+  [fullScreen]="true"
+>
+  <!-- Custom Loading Content Directly Here -->
+  <div class="custom-spinner-container">
+    <div class="spinner-content">
+      <!-- Logo Section -->
+      <div class="spinner-logo mb-6">
+        <div
+          class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center shadow-2xl animate-pulse"
+        >
+          <svg
+            class="w-10 h-10 text-white"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path
+              d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"
+            />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Loading Text -->
+      <div class="spinner-text">
+        <h3 class="text-2xl font-bold text-white mb-2 animate-pulse">
+          Loading Products Gallery
+        </h3>
+        <p class="text-gray-300 text-lg">
+          Please wait while we prepare amazing products for you...
+        </p>
+      </div>
+
+      <!-- Progress Dots -->
+      <div class="flex space-x-2 mt-6">
+        <div class="w-3 h-3 bg-orange-500 rounded-full animate-bounce"></div>
+        <div
+          class="w-3 h-3 bg-orange-500 rounded-full animate-bounce"
+          style="animation-delay: 0.1s"
+        ></div>
+        <div
+          class="w-3 h-3 bg-orange-500 rounded-full animate-bounce"
+          style="animation-delay: 0.2s"
+        ></div>
+      </div>
+    </div>
+  </div>
+</ngx-spinner>
+
+<!-- Method 2: Using TemplateRef in Component -->
+<!-- In your component template: -->
+<ng-template #customLoadingTemplate>
+  <div class="custom-spinner-container">
+    <div class="spinner-content">
+      <!-- Logo Section -->
+      <div class="spinner-logo mb-6">
+        <div
+          class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center shadow-2xl animate-pulse"
+        >
+          <svg
+            class="w-10 h-10 text-white"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path
+              d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"
+            />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Loading Text -->
+      <div class="spinner-text">
+        <h3 class="text-2xl font-bold text-white mb-2 animate-pulse">
+          Loading Products Gallery
+        </h3>
+        <p class="text-gray-300 text-lg">
+          Please wait while we prepare amazing products for you...
+        </p>
+      </div>
+
+      <!-- Progress Dots -->
+      <div class="flex space-x-2 mt-6">
+        <div class="w-3 h-3 bg-orange-500 rounded-full animate-bounce"></div>
+        <div
+          class="w-3 h-3 bg-orange-500 rounded-full animate-bounce"
+          style="animation-delay: 0.1s"
+        ></div>
+        <div
+          class="w-3 h-3 bg-orange-500 rounded-full animate-bounce"
+          style="animation-delay: 0.2s"
+        ></div>
+      </div>
+    </div>
+  </div>
+</ng-template>

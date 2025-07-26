@@ -1,6 +1,7 @@
 import { MyPreset } from './../../mypreset';
 import {
   ApplicationConfig,
+  importProvidersFrom,
   provideBrowserGlobalErrorListeners,
   provideZoneChangeDetection,
 } from '@angular/core';
@@ -20,6 +21,8 @@ import {
 } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
 import { errorsInterceptor } from './core/interceptors/errors/errors-interceptor';
+import { loadingInterceptor } from './core/interceptors/loading/loading-interceptor';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -27,7 +30,10 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
-    provideHttpClient(withFetch(), withInterceptors([errorsInterceptor])),
+    provideHttpClient(
+      withFetch(),
+      withInterceptors([loadingInterceptor, errorsInterceptor])
+    ),
     provideAnimationsAsync(),
     providePrimeNG({
       theme: {
@@ -41,6 +47,7 @@ export const appConfig: ApplicationConfig = {
         },
       },
     }),
+    importProvidersFrom(NgxSpinnerModule),
     MessageService,
   ],
 };
