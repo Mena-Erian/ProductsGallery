@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment.development';
+import { IProduct } from '../../../core/interfaces/Iproducts';
 
 @Injectable({
   providedIn: 'root',
@@ -9,8 +10,8 @@ import { environment } from '../../../../environments/environment.development';
 export class ProductService {
   httpClient = inject(HttpClient);
 
-  getAllProducts(): Observable<any> {
-    return this.httpClient.get(`${environment.baseUrl}/products`);
+  getAllProducts(): Observable<IProduct[]> {
+    return this.httpClient.get<IProduct[]>(`${environment.baseUrl}/products`);
   }
   getSingleProduct(productId: string): Observable<any> {
     return this.httpClient.get(`${environment.baseUrl}/products/${productId}`);
