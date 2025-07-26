@@ -9,17 +9,21 @@
     <div class="ms-auto w-[fit-content] mt-5">
       <p-toast />
       <p-splitbutton
+        (onClick)="sortByName()"
         autofocus="false"
         severity="secondary"
-        label="sort"
+        label="Sort"
+        icon="pi pi-sort-alpha-down"
+        dropdownIcon="pi pi-cog"
         [model]="sortBtnItems"
-      />
+      >
+      </p-splitbutton>
     </div>
   </div>
 
   <div class="relative">
     <p-autocomplete
-      [(ngModel)]="searchInputValue"
+      [(ngModel)]="searchInputValues"
       inputId="searchInput"
       multiple
       fluid
@@ -27,18 +31,10 @@
       (completeMethod)="search($event)"
       placeholder="Search"
     />
-
-    <button
-      class="absolute right-0 bottom-0 z-10 px-5"
-      label="Search"
-      severity="primary"
-      pButton
-      title="Search"
-    ></button>
   </div>
 
   <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 mt-7">
-    @for (prod of products() | searchProduct : searchInputValue ; track $index)
+    @for (prod of products() | searchProduct : searchInputValues ; track $index)
     {
     <app-card-product-component [product]="prod"></app-card-product-component>
     }

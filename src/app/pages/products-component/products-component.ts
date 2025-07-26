@@ -15,6 +15,7 @@ import { SplitButton } from 'primeng/splitbutton';
 import { MenuItem, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { SearchProductPipe } from '../../shared/pipes/searchProduct/search-product-pipe';
+
 interface AutoCompleteCompleteEvent {
   originalEvent: Event;
   query: string;
@@ -35,43 +36,17 @@ interface AutoCompleteCompleteEvent {
   styleUrl: './products-component.scss',
 })
 export class ProductsComponent implements OnInit {
-  constructor(private messageService: MessageService) {}
   productService = inject(ProductService);
   products: WritableSignal<IProduct[]> = signal<IProduct[]>([]);
-  sortBtnItems: MenuItem[] = [];
-
+  // Search Variables
   searchItems: string[] = [];
-  searchInputValue: string[] = [];
-  search(event: AutoCompleteCompleteEvent) {
-    this.searchItems = this.products()
-      .map((product) =>
-        product.title.toLowerCase().includes(event.query.toLowerCase())
-          ? product.title
-          : ''
-      )
-      .filter((val) => val != '');
-  }
-
+  searchInputValues: string[] = [];
+  // Sort
+  sortBtnItems: MenuItem[] = [];
+  constructor(private messageService: MessageService) {}
   ngOnInit(): void {
     this.getAllProducts();
-    this.sortBtnItems = [
-      {
-        label: 'Price',
-        command: () => {},
-        items: [
-          {
-            label: 'Bookmark',
-            icon: 'pi pi-fw pi-bookmark',
-          },
-          {
-            label: 'Bookmark',
-            icon: 'pi pi-fw pi-bookmark',
-          },
-        ],
-      },
-      { separator: true },
-      { label: 'Name (A-Z)', command: () => {} },
-    ];
+    this.initSortBtnItems();
   }
 
   getAllProducts(): void {
@@ -84,5 +59,70 @@ export class ProductsComponent implements OnInit {
         console.error(err);
       },
     });
+  }
+
+  search(event: AutoCompleteCompleteEvent) {
+    this.searchItems = this.products()
+      .map((product) =>
+        product.title.toLowerCase().includes(event.query.toLowerCase())
+          ? product.title
+          : ''
+      )
+      .filter((val) => val != '');
+  }
+
+  initSortBtnItems() {
+    this.sortBtnItems = [
+      {
+        label: 'Price',
+        icon: 'pi pi-fw pi-dollar',
+        // command: () => this.sortByPrice(),
+        items: [
+          {
+            label: 'Low to High',
+            icon: 'pi pi-fw pi-chevron-circle-down',
+            command: () => this.sortByPrice(),
+          },
+          {
+            label: 'High to Low',
+            icon: 'pi pi-fw pi-chevron-circle-up',
+            command: () => this.sortByPrice(false),
+          },
+        ],
+      },
+      {
+        label: 'Name (Z-A)',
+        command: () => {
+          this.sortByName(false);
+        },
+        icon: 'pi pi-fw pi-sort-alpha-up-alt',
+      },
+      { separator: true },
+      {
+        label: 'Remove All Sorting',
+        command: () => {
+          this.sortById();
+        },
+        icon: 'pi pi-fw pi-trash',
+      },
+    ];
+  }
+
+  sortByName(fromA: boolean = true) {
+    if (fromA)
+      this.products.set(
+        this.products().sort((a, b) => a.title.localeCompare(b.title))
+      );
+    else
+      this.products.set(
+        this.products().sort((a, b) => b.title.localeCompare(a.title))
+      );
+  }
+  sortByPrice(fromLowPrice: boolean = true) {
+    if (fromLowPrice) this.products().sort((a, b) => a.price - b.price);
+    else this.products().sort((a, b) => b.price - a.price);
+  }
+  sortById() {
+    this.products().sort((a, b) => a.id - b.id);
   }
 }
