@@ -1,3 +1,4 @@
+import { MyPreset } from './../../mypreset';
 import {
   ApplicationConfig,
   provideBrowserGlobalErrorListeners,
@@ -13,6 +14,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeuix/themes/aura';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { MessageService } from 'primeng/api';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -24,12 +26,16 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     providePrimeNG({
       theme: {
-        preset: Aura,
+        preset: MyPreset,
         options: {
-          darkModeSelector: ['dark'],
-          cssLayer: false,
+          darkModeSelector: '.dark',
+          cssLayer: {
+            name: 'primeng',
+            order: 'base, theme, primeng',
+          },
         },
       },
     }),
+    MessageService,
   ],
 };

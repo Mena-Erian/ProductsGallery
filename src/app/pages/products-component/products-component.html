@@ -1,4 +1,42 @@
 <section>
+  <div class="mb-8 flex">
+    <div>
+      <h1 class="text-4xl font-bold text-gray-800 mb-2">Products</h1>
+      <p class="text-lg text-gray-600">
+        Discover amazing products at great prices
+      </p>
+    </div>
+    <div class="ms-auto w-[fit-content] mt-5">
+      <p-toast />
+      <p-splitbutton
+        autofocus="false"
+        severity="secondary"
+        label="sort"
+        [model]="sortBtnItems"
+      />
+    </div>
+  </div>
+
+  <div class="relative">
+    <p-autocomplete
+      [(ngModel)]="searchInputValue"
+      inputId="searchInput"
+      multiple
+      fluid
+      [suggestions]="searchItems"
+      (completeMethod)="search($event)"
+      placeholder="Search"
+    />
+
+    <button
+      class="absolute right-0 bottom-0 z-10 px-5"
+      label="Search"
+      severity="primary"
+      pButton
+      title="Search"
+    ></button>
+  </div>
+
   <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 mt-7">
     @for (prod of products(); track $index) {
     <app-card-product-component [product]="prod"></app-card-product-component>
