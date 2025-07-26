@@ -68,6 +68,24 @@
         <span class="text-4xl lg:text-5xl font-bold text-orange-600">
           {{ productDetails()?.price | currency }}
         </span>
+        <!-- rating -->
+        <div>
+          <div
+            class="w-full text-gray-500 flex items-center justify-end gap-x-3"
+          >
+            <span>
+              <span class="text-primary-500"
+                >{{productDetails()?.rating?.rate}} </span
+              >out of 5</span
+            >
+            <p-rating [(ngModel)]="rattingValue" [readonly]="true" />
+          </div>
+          <span class="text-right block text-gray-600">
+            <span class="text-rose-700"
+              >{{productDetails()?.rating?.count}} </span
+            >global ratings
+          </span>
+        </div>
       </div>
 
       <!-- Description -->
