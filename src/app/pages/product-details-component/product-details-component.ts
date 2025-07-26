@@ -72,7 +72,7 @@ export class ProductDetailsComponent implements OnInit {
             prod.category.includes(this.productDetails()?.category ?? '')
           )
         );
-        console.log(this.relatedProducts());
+        // console.log(this.relatedProducts());
       },
     });
   }

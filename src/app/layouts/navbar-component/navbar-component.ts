@@ -1,11 +1,5 @@
 import { NgClass } from '@angular/common';
-import {
-  AfterViewInit,
-  Component,
-  effect,
-  HostListener,
-  inject,
-} from '@angular/core';
+import { Component, effect, HostListener, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ToggleSwitch } from 'primeng/toggleswitch';
@@ -16,7 +10,7 @@ import { DarkModeService } from '../../shared/services/darkMode/dark-mode-servic
   templateUrl: './navbar-component.html',
   styleUrl: './navbar-component.scss',
 })
-export class NavbarComponent implements AfterViewInit {
+export class NavbarComponent implements OnInit {
   private readonly darkModeService = inject(DarkModeService);
   isDark: boolean = false;
   constructor() {
@@ -26,10 +20,9 @@ export class NavbarComponent implements AfterViewInit {
   }
   @HostListener('change') onChangeDarkModeSwitchss() {
     this.darkModeService.toggleDarkMode();
-    console.log('it work');
     this.darkModeService.isDark.set(this.isDark);
   }
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
     this.darkModeService.darkModeCheck();
   }
 }
