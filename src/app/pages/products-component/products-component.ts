@@ -13,7 +13,8 @@ import { IProduct } from '../../core/interfaces/Iproducts';
 import { AutoComplete } from 'primeng/autocomplete';
 import { SplitButton } from 'primeng/splitbutton';
 import { MenuItem, MessageService } from 'primeng/api';
-import { Toast, ToastModule } from 'primeng/toast';
+import { ToastModule } from 'primeng/toast';
+import { SearchProductPipe } from '../../shared/pipes/searchProduct/search-product-pipe';
 interface AutoCompleteCompleteEvent {
   originalEvent: Event;
   query: string;
@@ -28,6 +29,7 @@ interface AutoCompleteCompleteEvent {
     ButtonModule,
     SplitButton,
     ToastModule,
+    SearchProductPipe,
   ],
   templateUrl: './products-component.html',
   styleUrl: './products-component.scss',

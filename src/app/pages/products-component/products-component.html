@@ -38,7 +38,8 @@
   </div>
 
   <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 mt-7">
-    @for (prod of products(); track $index) {
+    @for (prod of products() | searchProduct : searchInputValue ; track $index)
+    {
     <app-card-product-component [product]="prod"></app-card-product-component>
     }
   </div>
