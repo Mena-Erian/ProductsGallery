@@ -1,10 +1,11 @@
 import { Component, input } from '@angular/core';
 import { IProduct } from '../../../core/interfaces/Iproducts';
+import { CurrencyPipe } from '@angular/common';
 // import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-card-product-component',
-  imports: [],
+  imports: [CurrencyPipe],
   templateUrl: './card-product-component.html',
   styleUrl: './card-product-component.scss',
 })

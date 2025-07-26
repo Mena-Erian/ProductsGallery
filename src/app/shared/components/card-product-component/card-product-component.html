@@ -33,7 +33,7 @@
       <div class="flex items-center justify-between">
         <div class="flex items-center space-x-2">
           <span class="text-2xl font-bold text-gray-800">
-            ${{ product()?.price }}
+            {{ product()?.price | currency }}
           </span>
         </div>
       </div>
