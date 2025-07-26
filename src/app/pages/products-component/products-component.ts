@@ -55,9 +55,6 @@ export class ProductsComponent implements OnInit {
         console.log(res);
         this.products.set(res);
       },
-      error: (err) => {
-        console.error(err);
-      },
     });
   }
 

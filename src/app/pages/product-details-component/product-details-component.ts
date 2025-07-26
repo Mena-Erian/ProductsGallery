@@ -50,9 +50,6 @@ export class ProductDetailsComponent implements OnInit {
       next: (paramId) => {
         this.productId = paramId.get('productId') ?? '';
       },
-      error: (err) => {
-        console.error(err);
-      },
     });
     return this.productId;
   }
@@ -63,9 +60,6 @@ export class ProductDetailsComponent implements OnInit {
         this.productDetails.set(res);
         this.rattingValue = this.productDetails()?.rating.rate ?? 0;
         // this.getRelatedProducts();
-      },
-      error: (err) => {
-        console.error(err);
       },
     });
   }
@@ -79,9 +73,6 @@ export class ProductDetailsComponent implements OnInit {
           )
         );
         console.log(this.relatedProducts());
-      },
-      error: (err) => {
-        console.error(err);
       },
     });
   }

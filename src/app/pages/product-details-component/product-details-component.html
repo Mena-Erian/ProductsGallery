@@ -151,7 +151,7 @@
     </h2>
     @defer ( when showLazySection ) {
     <hr class="border-primary-500 border mt-5 opacity-50" />
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 mt-7">
+    <div class="grid sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-8 mt-7">
       @for (prod of relatedProducts() ; track $index) {
       <app-card-product-component [product]="prod"></app-card-product-component>
       }
