@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { AuthLayoutComponent } from './layouts/auth-layout-component/auth-layout-component';
 import { MainLayoutComponent } from './layouts/main-layout-component/main-layout-component';
+import { ProductsComponent } from './pages/products-component/products-component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'main', pathMatch: 'full' },
@@ -34,10 +35,7 @@ export const routes: Routes = [
       { path: '', redirectTo: 'products', pathMatch: 'full' },
       {
         path: 'products',
-        loadComponent: () =>
-          import('./pages/products-component/products-component').then(
-            (c) => c.ProductsComponent
-          ),
+        component: ProductsComponent,
         title: 'Products',
       },
       {
