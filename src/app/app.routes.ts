@@ -46,14 +46,14 @@ export const routes: Routes = [
           ).then((c) => c.ProductDetailsComponent),
         title: 'Product Details',
       },
-      {
-        path: 'cart',
-        loadComponent: () =>
-          import('./pages/cart-component/cart-component').then(
-            (c) => c.CartComponent
-          ),
-        title: 'Cart',
-      },
+      // {
+      //   path: 'cart',
+      //   loadComponent: () =>
+      //     import('./pages/cart-component/cart-component').then(
+      //       (c) => c.CartComponent
+      //     ),
+      //   title: 'Cart',
+      // },
     ],
   },
   {
