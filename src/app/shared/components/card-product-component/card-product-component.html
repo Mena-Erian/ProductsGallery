@@ -1,11 +1,11 @@
 @if (product() != undefined) {
 <!-- product-card.component.html -->
 <div
-  [routerLink]="['/main/product-details',product()?.id]"
   class="bg-white dark:bg-gray-800 rounded-xl shadow-md dark:shadow-gray-900/50 hover:shadow-xl dark:hover:shadow-gray-900/70 transition-all duration-300 group overflow-hidden border border-gray-100 dark:border-gray-700 hover:border-orange-200 dark:hover:border-orange-400"
 >
   <!-- Image Container -->
   <div
+    [routerLink]="['/main/product-details',product()?.id]"
     class="relative overflow-hidden bg-gray-50 dark:bg-gray-700 cursor-pointer"
   >
     <img
@@ -64,6 +64,7 @@
     <!-- Add to Cart Button -->
     <div class="pt-4">
       <button
+        (click)="addToCart()"
         class="w-full cursor-pointer bg-gradient-to-r from-orange-500 to-red-500 dark:from-orange-400 dark:to-red-400 text-white px-4 py-2 rounded-lg font-semibold hover:from-orange-600 hover:to-red-600 dark:hover:from-orange-500 dark:hover:to-red-500 transition-all duration-300 shadow-md dark:shadow-gray-900/30 hover:shadow-lg dark:hover:shadow-gray-900/50"
       >
         Add to Cart

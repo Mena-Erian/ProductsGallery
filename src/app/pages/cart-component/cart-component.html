@@ -68,7 +68,7 @@
       [prdouctMetaData]="product"
     ></app-cart-item-component>
     <!-- if youser don't have products in cart -->
-    } @if (cartData().products) {
+    } @if (!getProductCounter()) {
     <!-- Empty Cart State -->
     <div
       class="text-center py-16 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700"
