@@ -94,9 +94,3 @@ npm install
 # Run the app
 ng serve
 ```
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License. See the LICENSE file for more details.
