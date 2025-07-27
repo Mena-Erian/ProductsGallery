@@ -1,1 +1,72 @@
-<p>cart-component works!</p>
+@if (cartData()) {
+<div
+  class="min-h-screen bg-surface-0 dark:bg-gray-900 p-6 transition-colors duration-300"
+>
+  <!-- Toast Messages -->
+  <p-toast position="top-right" [life]="3000"></p-toast>
+
+  <!-- Confirmation Dialog -->
+  <p-confirmDialog
+    [style]="{ width: '25rem' }"
+    [baseZIndex]="10000"
+    acceptButtonStyleClass="p-button-primary"
+    rejectButtonStyleClass="p-button-secondary"
+  >
+  </p-confirmDialog>
+
+  <div class="max-w-6xl mx-auto">
+    <!-- Header Section -->
+    <div class="mb-8">
+      <p-card class="shadow-lg border-0 bg-surface-50 dark:bg-surface-900">
+        <ng-template pTemplate="content">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-4">
+              <div
+                class="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center shadow-lg"
+              >
+                <i class="pi pi-shopping-cart text-white text-2xl"></i>
+              </div>
+              <div>
+                <h1
+                  class="text-3xl font-bold text-surface-900 dark:text-surface-0 mb-2"
+                >
+                  Shopping Cart
+                </h1>
+                <div
+                  class="flex items-center gap-3 text-surface-600 dark:text-surface-400"
+                >
+                  <i class="pi pi-clock text-sm"></i>
+                  <span class="text-sm">{{ cartData()?.date }}</span>
+                  <span>•</span>
+                  <span class="text-sm">Cart #{{ cartData()?.id }}</span>
+                  <span>•</span>
+                  <span class="text-sm">User #{{ cartData()?.userId }}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="text-righ flex flex-col justify-center items-center">
+              <p class="text-surface-600 dark:text-surface-400 text-sm mb-1">
+                Total Items
+              </p>
+              <p-badge
+                [value]="cartData()?.products?.length ?? 0 "
+                size="large"
+                class="text-2xl"
+              >
+              </p-badge>
+            </div>
+          </div>
+        </ng-template>
+      </p-card>
+    </div>
+    <hr />
+    @for (product of cartData()?.products; track $index) {
+    <app-cart-item-component
+      [prdouctMetaData]="product"
+    ></app-cart-item-component>
+    }
+  </div>
+</div>
+
+}

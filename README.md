@@ -1,59 +1,121 @@
-# ProductsGallery
+# Products Gallery Web Application
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.1.
+## Project Overview
 
-## Development server
+This web application provides a modern, fully responsive product gallery integrated with the Fake Store API.
 
-To start a local development server, run:
+Users can browse, filter, sort, and view detailed information on products powered by Angular’s latest features and optimized for performance.
+
+---
+
+## Key Features
+
+- Standalone Angular v20 components with optimized Server-Side Rendering (SSR) and Static-Site Generation (SSG).
+- Utility-first styling with Tailwind CSS and accessible UI components from Flowbite.
+- PrimeNG modules for advanced search bars, buttons, form controls, toasts, and more.
+- ngx-spinner loading screens during API calls and route transitions via a loading interceptor.
+- API error handling with fallback UI using PrimeNG toast notifications in an error interceptor.
+- Search functionality:
+  -Search by input user and use Custom pipe to filter product based on search
+- Sorting functionality:
+  - Sort products by name (A–Z, Z–A)
+  - Sort by price (Low to High, High to Low)
+- Lazy-loaded route modules and a custom defer directive to emit display events on demand.
+- Category-based suggestions on each Product Details page to boost engagement.
+
+---
+
+## Objective
+
+Provide users with seamless product browsing, filtering, sorting, and cart management features in a responsive, high-performance web application.
+
+---
+
+## Tech Stack Used
+
+### Framework
+
+- Angular v20 (standalone components, SSR, SSG)
+
+### Styling
+
+- Tailwind CSS
+- Flowbite
+
+### UI Components
+
+- PrimeNG
+
+### Loading Indicator
+
+- ngx-spinner
+
+### Data Source
+
+- Fake Store API
+
+---
+
+## Features Breakdown
+
+### Products Page
+
+#### Data Fetching
+
+- Fetch product list from Fake Store API
+- Handle API errors with a fallback UI
+
+#### Display
+
+- Render product cards with name and image
+- Click a card to navigate to the Product Details page
+
+#### Filtering & Sorting
+
+- Case-insensitive search by product name
+- Sort options for price (Low→High / High→Low)
+- Sort options for name (A→Z / Z→A)
+
+### Product Details Page
+
+#### Dynamic Routing
+
+- Route: `/products/:id`
+
+#### Display Details
+
+- Show product name, image, full description, price, category, and rating
+
+#### Dynamic Suggestions
+
+- Fetch and display related items from the same category
+
+---
+
+## Enhancements
+
+- Dark mode toggle
+- Product rating display
+- Lazy Loading for faster initial load
+- Enhanced product listing interactions
+- Loading screen via ngx-spinner during API calls and routing
+
+---
+
+## Demo
+
+Live Demo: [Replace with your live demo link]()
+
+---
+
+## Screenshots
+
+---
+
+## Installation
+
+Clone the repository
 
 ```bash
-ng serve
+git clone https://github.com/yourusername/products-gallery.git
 ```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

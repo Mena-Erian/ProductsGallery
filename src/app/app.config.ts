@@ -19,7 +19,7 @@ import {
   withFetch,
   withInterceptors,
 } from '@angular/common/http';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { errorsInterceptor } from './core/interceptors/errors/errors-interceptor';
 import { loadingInterceptor } from './core/interceptors/loading/loading-interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
@@ -49,5 +49,6 @@ export const appConfig: ApplicationConfig = {
     }),
     importProvidersFrom(NgxSpinnerModule),
     MessageService,
+    ConfirmationService,
   ],
 };
