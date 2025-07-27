@@ -1,121 +1,102 @@
 # Products Gallery Web Application
 
-## Project Overview
+## 🧾 Overview
 
-This web application provides a modern, fully responsive product gallery integrated with the Fake Store API.
-
-Users can browse, filter, sort, and view detailed information on products powered by Angular’s latest features and optimized for performance.
+This is a responsive and modern product gallery web application built with **Angular v20**, integrated with the **Fake Store API**. Users can browse, search, sort, and view product details. The application uses advanced UI components, loading states, and optimized rendering techniques.
 
 ---
 
-## Key Features
+## 🚀 Key Features
 
-- Standalone Angular v20 components with optimized Server-Side Rendering (SSR) and Static-Site Generation (SSG).
-- Utility-first styling with Tailwind CSS and accessible UI components from Flowbite.
-- PrimeNG modules for advanced search bars, buttons, form controls, toasts, and more.
-- ngx-spinner loading screens during API calls and route transitions via a loading interceptor.
-- API error handling with fallback UI using PrimeNG toast notifications in an error interceptor.
-- Search functionality:
-  -Search by input user and use Custom pipe to filter product based on search
-- Sorting functionality:
-  - Sort products by name (A–Z, Z–A)
-  - Sort by price (Low to High, High to Low)
-- Lazy-loaded route modules and a custom defer directive to emit display events on demand.
-- Category-based suggestions on each Product Details page to boost engagement.
+Below are the main capabilities and enhancements implemented in the project to improve the user experience and performance:
 
----
-
-## Objective
-
-Provide users with seamless product browsing, filtering, sorting, and cart management features in a responsive, high-performance web application.
+- 🔍 **Search** functionality using a custom pipe to filter products by name.
+- ↕️ **Sort** products by:
+  - Name (A–Z, Z–A)
+  - Price (Low → High / High → Low) using standard TypeScript logic.
+- 🌙 **Dark Mode** toggle for user theme preference.
+- ⭐ **Product Rating Display** visible on both product cards and the details page.
+- ❌ **Error Handling** using a global HTTP interceptor with user-friendly PrimeNG toast notifications.
+- ⏳ **Loading Indicators & Empty States** handled by ngx-spinner via HTTP interceptors.
+- 📡 **RxJS Signals** for efficient reactive state management.
+- 📦 **Category-Based Suggestions** shown on the product details page to promote relevant browsing.
+- 🚦 **Lazy Loading** for route modules and a custom `defer` directive to delay element loading until in view used it with Suggestions in product Details page.
+- 🎞️ **Scroll-Based Card Animations** to improve UI engagement as users scroll.
+- 🛒 **Cart Functionality** is fully implemented on the frontend logic level, while backend integration is still in progress and planned for a future update.
+- 🔐 **Authentication and Layout Components** scaffolded for upcoming features.
 
 ---
 
-## Tech Stack Used
+## 🎯 Objective
 
-### Framework
-
-- Angular v20 (standalone components, SSR, SSG)
-
-### Styling
-
-- Tailwind CSS
-- Flowbite
-
-### UI Components
-
-- PrimeNG
-
-### Loading Indicator
-
-- ngx-spinner
-
-### Data Source
-
-- Fake Store API
+Deliver a high-performance, cleanly structured product gallery application with user-friendly features such as search, filtering, sorting, detailed product views, and smooth visual experience.
 
 ---
 
-## Features Breakdown
+## 🧰 Tech Stack Used
 
-### Products Page
-
-#### Data Fetching
-
-- Fetch product list from Fake Store API
-- Handle API errors with a fallback UI
-
-#### Display
-
-- Render product cards with name and image
-- Click a card to navigate to the Product Details page
-
-#### Filtering & Sorting
-
-- Case-insensitive search by product name
-- Sort options for price (Low→High / High→Low)
-- Sort options for name (A→Z / Z→A)
-
-### Product Details Page
-
-#### Dynamic Routing
-
-- Route: `/products/:id`
-
-#### Display Details
-
-- Show product name, image, full description, price, category, and rating
-
-#### Dynamic Suggestions
-
-- Fetch and display related items from the same category
+| Layer      | Tools                  |
+| ---------- | ---------------------- |
+| Framework  | Angular v20 (SSR, SSG) |
+| Styling    | Tailwind CSS, Flowbite |
+| UI Library | PrimeNG                |
+| Spinner    | ngx-spinner            |
+| API        | Fake Store API         |
 
 ---
 
-## Enhancements
+## 📦 Pages & Features
 
-- Dark mode toggle
-- Product rating display
-- Lazy Loading for faster initial load
-- Enhanced product listing interactions
-- Loading screen via ngx-spinner during API calls and routing
+### 📃 Products Page
+
+- Fetch product data from Fake Store API
+- Display cards with product image, name, rating
+- Enable custom search and sorting options
+- Navigate to detailed view
+- Scroll-triggered card animation on appearance
+
+### 🔎 Filtering & Sorting
+
+- Case-insensitive search with a custom Angular pipe
+- Functional sorting by name and price using methods
+
+### 🧾 Product Details Page
+
+- Dynamic route: `/products/:id`
+- Product information includes name, image, description, price, rating, and category
+- Displays related product suggestions based on the same category and using here lazy loading
+
+### 💡 Enhancements
+
+- Dark mode UI toggle
+- Product rating visualization
+- Centralized HTTP error and loading state handling by the interceptors
+- Reusable layout and authentication components prepared for future modules
+- Cart logic (currently awaiting backend integration)
 
 ---
 
-## Demo
+## 🔗 Live Demo
 
-Live Demo: [Replace with your live demo link]()
-
----
-
-## Screenshots
+[🔗 View Deployed App](https://products-gallery-five.vercel.app)
 
 ---
 
-## Installation
-
-Clone the repository
+## ⚙️ Installation
 
 ```bash
-git clone https://github.com/yourusername/products-gallery.git
+# Clone the repository
+git clone https://github.com/Mena-Erian/ProductsGallery.git
+
+# Install dependencies
+npm install
+
+# Run the app
+ng serve
 ```
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License. See the LICENSE file for more details.
