@@ -6,7 +6,7 @@ import {
   signal,
   WritableSignal,
 } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CartService } from '../../shared/services/cart/cart-service';
 import { CartItemComponent } from '../../shared/components/cart-item-component/cart-item-component';
 import { CommonModule } from '@angular/common';
@@ -24,6 +24,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Toast } from 'primeng/toast';
 import { ICart } from '../../core/interfaces/ICart';
+import { AuthService } from '../../shared/services/auth/auth-service';
 @Component({
   selector: 'app-cart-component',
   imports: [
@@ -41,21 +42,19 @@ import { ICart } from '../../core/interfaces/ICart';
     RippleModule,
     ConfirmDialogModule,
     Toast,
+    RouterLink,
   ],
   templateUrl: './cart-component.html',
   styleUrl: './cart-component.scss',
 })
 export class CartComponent implements OnInit {
   private readonly cartService = inject(CartService);
-  private readonly router = inject(Router);
-  private readonly activatedRoute = inject(ActivatedRoute);
-  // private readonly toastrService = inject(ToastrService);
-  // cartRes: ICartRoot = {} as ICartRoot;
-  cartData: WritableSignal<ICart | null> = signal<ICart | null>(null);
+  private readonly authService = inject(AuthService);
+  cartData: WritableSignal<ICart> = signal<ICart>({} as ICart);
 
   cartProducts: any[] = [];
   ngOnInit(): void {
-    this.getUserCart();
+    this.getUserCart(this.authService.user().id.toString());
   }
   // goCheckOut(cartId: string): void {
   //   if (this.cartData().totalCartPrice > 0) {
@@ -68,10 +67,9 @@ export class CartComponent implements OnInit {
   //   // [routerLink]="['/checkout', cartData()._id]"
   // }
 
-  getUserCart(): void {
-    this.cartService.getSingleCartItem('1').subscribe({
+  getUserCart(userId: string): void {
+    this.cartService.getSingleCartItem(userId).subscribe({
       next: (res) => {
-        console.log(res);
         this.cartData.set(res);
         console.log(this.cartData());
       },
@@ -105,5 +103,20 @@ export class CartComponent implements OnInit {
     //   icon: 'error',
     //   confirmButtonText: 'Cool',
     // });
+  }
+  updateCartProductList(productId: number) {
+    this.cartData.update((cart) => ({
+      ...cart,
+      products: (cart?.products ?? []).filter(
+        (prod) => prod.productId != productId
+      ),
+    }));
+    console.log('work', this.cartData()?.products);
+  }
+  getProductCounter() {
+    if (this.cartData() && this.cartData().products) {
+      return this.cartData().products.length;
+    }
+    return 0;
   }
 }

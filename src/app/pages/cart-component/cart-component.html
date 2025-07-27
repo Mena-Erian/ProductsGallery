@@ -17,42 +17,43 @@
   <div class="max-w-6xl mx-auto">
     <!-- Header Section -->
     <div class="mb-8">
-      <p-card class="shadow-lg border-0 bg-surface-50 dark:bg-surface-900">
+      <p-card class="shadow-lg border-0 bg-gray-50 dark:bg-gray-900">
         <ng-template pTemplate="content">
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-4">
               <div
-                class="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center shadow-lg"
+                class="w-16 h-16 rounded-2xl bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center shadow-lg"
               >
                 <i class="pi pi-shopping-cart text-white text-2xl"></i>
               </div>
               <div>
                 <h1
-                  class="text-3xl font-bold text-surface-900 dark:text-surface-0 mb-2"
+                  class="text-3xl font-bold text-gray-900 dark:text-white mb-2"
                 >
                   Shopping Cart
                 </h1>
                 <div
-                  class="flex items-center gap-3 text-surface-600 dark:text-surface-400"
+                  class="flex items-center gap-3 text-gray-600 dark:text-gray-400"
                 >
                   <i class="pi pi-clock text-sm"></i>
-                  <span class="text-sm">{{ cartData()?.date }}</span>
+                  <span class="text-sm">{{ cartData().date }}</span>
                   <span>•</span>
-                  <span class="text-sm">Cart #{{ cartData()?.id }}</span>
+                  <span class="text-sm">Cart #{{ cartData().id }}</span>
                   <span>•</span>
-                  <span class="text-sm">User #{{ cartData()?.userId }}</span>
+                  <span class="text-sm">User #{{ cartData().userId }}</span>
                 </div>
               </div>
             </div>
 
-            <div class="text-righ flex flex-col justify-center items-center">
-              <p class="text-surface-600 dark:text-surface-400 text-sm mb-1">
+            <div class="text-right flex flex-col justify-center items-center">
+              <p class="text-gray-600 dark:text-gray-400 text-sm mb-1">
                 Total Items
               </p>
               <p-badge
-                [value]="cartData()?.products?.length ?? 0 "
+                [value]="getProductCounter()"
                 size="large"
-                class="text-2xl"
+                class="text-2xl bg-orange-500 text-white"
+                [style]="{ 'background-color': '#f97316', 'color': 'white' }"
               >
               </p-badge>
             </div>
@@ -60,11 +61,39 @@
         </ng-template>
       </p-card>
     </div>
-    <hr />
-    @for (product of cartData()?.products; track $index) {
+    <hr class="mb-10" />
+    @for (product of cartData().products; track $index) {
     <app-cart-item-component
+      (sendToRemoveCartItem)="updateCartProductList($event)"
       [prdouctMetaData]="product"
     ></app-cart-item-component>
+    <!-- if youser don't have products in cart -->
+    } @if (cartData().products) {
+    <!-- Empty Cart State -->
+    <div
+      class="text-center py-16 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700"
+    >
+      <div
+        class="w-24 h-24 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center mx-auto mb-6"
+      >
+        <i class="pi pi-shopping-cart text-gray-400 text-4xl"></i>
+      </div>
+
+      <h3 class="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-2">
+        Your cart is empty
+      </h3>
+
+      <p class="text-gray-500 dark:text-gray-400 mb-6">
+        Add some amazing products to get started!
+      </p>
+
+      <button
+        routerLink="/main/products"
+        class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+      >
+        Continue Shopping
+      </button>
+    </div>
     }
   </div>
 </div>

@@ -32,7 +32,7 @@ export class CartService {
     newCount: number
   ): Observable<any> {
     return this.httpClient.put<any>(
-      `${environment.baseUrl}/api/v1/cart/${idProduct}`,
+      `${environment.baseUrl}/cart/${idProduct}`,
       {
         count: `${newCount}`,
       }
