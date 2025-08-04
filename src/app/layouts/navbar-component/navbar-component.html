@@ -6,6 +6,7 @@
   >
     <!-- Logo Section -->
     <a
+      (click)="dispatchActionOrIncreasCounter()"
       routerLink="/main/products"
       class="flex items-center space-x-3 rtl:space-x-reverse group cursor-pointer"
     >
@@ -139,7 +140,8 @@
             Cart
             <span
               class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-red-500 dark:from-orange-400 dark:to-red-400 group-hover:w-full transition-all duration-300"
-            ></span>
+            >
+            </span>
           </a>
         </li>
       </ul>

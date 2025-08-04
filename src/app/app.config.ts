@@ -23,6 +23,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { errorsInterceptor } from './core/interceptors/errors/errors-interceptor';
 import { loadingInterceptor } from './core/interceptors/loading/loading-interceptor';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { provideStore } from '@ngrx/store';
+import { counterReducer } from './store/counter.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -53,5 +55,8 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(NgxSpinnerModule),
     MessageService,
     ConfirmationService,
+    provideStore({
+      counter: counterReducer,
+    }),
   ],
 };
